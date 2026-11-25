@@ -1,19 +1,48 @@
 // Карточки раздела «С чем можно обратиться».
 // При выборе подсвечивается соответствующая PNG-линия.
 
-document.querySelectorAll('.request-card').forEach(card => {
+// Hover on desktop, tap/click on touch devices and keyboard access everywhere.
+const requestItems = [...document.querySelectorAll('.requests .request-item')];
+const requestHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+function closeRequests() {
+  requestItems.forEach(item => {
+    const card = item.querySelector('.request-card');
+    const detail = item.querySelector('.request-detail');
+    if (!card || !detail) return;
+    card.classList.remove('is-open');
+    card.setAttribute('aria-expanded', 'false');
+    detail.hidden = true;
+  });
+}
+function openRequest(item) {
+  closeRequests();
+  const card = item.querySelector('.request-card');
+  const detail = item.querySelector('.request-detail');
+  if (!card || !detail) return;
+  card.classList.add('is-open');
+  card.setAttribute('aria-expanded', 'true');
+  detail.hidden = false;
+}
+requestItems.forEach(item => {
+  const card = item.querySelector('.request-card');
+  if (!card) return;
+  item.addEventListener('mouseenter', () => {
+    if (requestHover.matches) openRequest(item);
+  });
+  item.addEventListener('mouseleave', () => {
+    if (requestHover.matches && !item.contains(document.activeElement)) closeRequests();
+  });
   card.addEventListener('click', () => {
-    const willOpen = !card.classList.contains('is-open');
-
-    document.querySelectorAll('.request-card').forEach(other => {
-      other.classList.remove('is-open');
-      other.setAttribute('aria-pressed', 'false');
-    });
-
-    if (willOpen) {
-      card.classList.add('is-open');
-      card.setAttribute('aria-pressed', 'true');
+    if (requestHover.matches) {
+      // Keyboard and mouse clicks remain usable; hover keeps the panel open.
+      openRequest(item);
+      return;
     }
+    const isOpen = card.getAttribute('aria-expanded') === 'true';
+    if (isOpen) closeRequests(); else openRequest(item);
+  });
+  item.addEventListener('focusout', event => {
+    if (requestHover.matches && !item.contains(event.relatedTarget) && !item.matches(':hover')) closeRequests();
   });
 });
 
@@ -74,28 +103,6 @@ if (educationTrigger) {
     }
   });
 }
-
-
-// Выбор состояния в блоке записи.
-
-const consultationTags = document.querySelectorAll(
-  '.consultation-tag'
-);
-
-consultationTags.forEach(tag => {
-  tag.addEventListener('click', () => {
-    const selected =
-      tag.getAttribute('aria-pressed') === 'true';
-
-    consultationTags.forEach(other => {
-      other.setAttribute('aria-pressed', 'false');
-    });
-
-    if (!selected) {
-      tag.setAttribute('aria-pressed', 'true');
-    }
-  });
-});
 
 
 // Подсветка активного пункта меню.
@@ -328,7 +335,7 @@ if (menuToggle && mobileNavigation) {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 800) {
+    if (window.innerWidth > 1150) {
       setMobileMenu(false);
     }
   });
@@ -422,4 +429,25 @@ document.querySelectorAll(
  const frame=(now)=>{if(!last)last=now;const dt=Math.min(now-last,80);last=now;if(!paused&&!reduced.matches&&now>manualUntil){offset+=dt*.022;normalize();draw();}requestAnimationFrame(frame);};
  requestAnimationFrame(frame);
  window.addEventListener('resize',()=>{normalize();draw();});
+})();
+
+// Reserve room for every visible request panel, without moving the cards.
+(() => {
+ const layout = document.querySelector('.requests .requests-layout');
+ if (!layout) return;
+ const panels = [...layout.querySelectorAll('.request-card, .request-detail')];
+ const desktop = window.matchMedia('(min-width: 1001px)');
+ const update = () => {
+   if (!desktop.matches) { layout.style.removeProperty('--requests-height'); return; }
+   const origin = layout.getBoundingClientRect().top;
+   const end = Math.max(origin, ...panels.filter(p => !p.hidden && p.getClientRects().length).map(p => p.getBoundingClientRect().bottom));
+   const height = `${Math.ceil(end - origin + 24)}px`;
+   if (layout.style.getPropertyValue('--requests-height') !== height) layout.style.setProperty('--requests-height', height);
+ };
+ const observer = new ResizeObserver(update);
+ panels.forEach(p => observer.observe(p));
+ new MutationObserver(update).observe(layout, {subtree:true, attributes:true, attributeFilter:['hidden']});
+ window.addEventListener('resize', update);
+ document.fonts?.ready.then(update);
+ update();
 })();
