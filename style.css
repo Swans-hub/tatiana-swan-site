@@ -1888,8 +1888,8 @@ h1, h2, h3 {
    ЕДИНЫЙ РИТМ СЕКЦИЙ: исправление отступов
    ========================================== */
 :root { --space: 52px; }
-.requests { padding-top: 48px; padding-bottom: 44px; }
-.methods, .education, .publications { padding-top: 48px; padding-bottom: 48px; }
+.requests { padding-top: 16px; padding-bottom: 44px; }
+.methods, .education, .publications { padding-top: 16px; padding-bottom: 48px; }
 /* Согласованная ширина с первыми двумя экранами */
 .methods > .container, .education > .container,
 .publications > .container, .consultation > .container,
@@ -1904,7 +1904,7 @@ h1, h2, h3 {
 .pub-video.pub-video-featured { background: #E8EEF0; }
 
 /* КОНСУЛЬТАЦИИ */
-.consultation { padding: 62px 0 66px; background: #F0F3F2; }
+.consultation { padding: 21px 0 66px; background: #F0F3F2; }
 .consultation-grid { display:grid; grid-template-columns: 1.15fr .85fr; gap: clamp(36px, 6vw, 100px); align-items:center; }
 .consultation-intro h2 { margin: 25px 0 25px; font-size:clamp(38px,4.1vw,62px); line-height:1.2; letter-spacing:-.045em; }
 .consultation-intro > p { max-width: 590px; font-size:18px; line-height:1.7; color:#596761; margin-bottom:26px; }
@@ -2859,10 +2859,10 @@ body { background: var(--bg); }
   .orbit-point--bl {left:14%;bottom:14%;}
   .orbit-point--br {right:14%;bottom:14%;}
   .orbit-point--bottom {left:calc(50% - 6px);bottom:-7px;}
-  .requests-layout:has(.left-side .request-card:first-child:is(:hover,.is-open)) .orbit-point--tl,
-  .requests-layout:has(.right-side .request-card:first-child:is(:hover,.is-open)) .orbit-point--tr,
-  .requests-layout:has(.left-side .request-card:last-child:is(:hover,.is-open)) .orbit-point--bl,
-  .requests-layout:has(.right-side .request-card:last-child:is(:hover,.is-open)) .orbit-point--br,
+  .requests-layout:has(.request-item--burnout > .request-card:is(:hover,.is-open)) .orbit-point--tl,
+  .requests-layout:has(.request-item--meaning > .request-card:is(:hover,.is-open)) .orbit-point--tr,
+  .requests-layout:has(.request-item--relationships > .request-card:is(:hover,.is-open)) .orbit-point--bl,
+  .requests-layout:has(.request-item--anxiety > .request-card:is(:hover,.is-open)) .orbit-point--br,
   .requests-layout:has(.bottom-card:is(:hover,.is-open)) .orbit-point--bottom {background:#D3A66C;box-shadow:0 0 0 1px #D3A66C;}
 }
 @media (max-width:1000px) {
@@ -3052,10 +3052,10 @@ body { background: var(--bg); }
     color:#9D7446 !important;
     box-shadow:0 9px 28px rgba(181,137,81,.13), inset 0 0 0 1px rgba(227,188,137,.22) !important;
   }
-  .requests .requests-layout:has(.left-side .request-card:first-child:is(:hover,:focus-visible,.is-open)) .orbit-point--tl,
-  .requests .requests-layout:has(.right-side .request-card:first-child:is(:hover,:focus-visible,.is-open)) .orbit-point--tr,
-  .requests .requests-layout:has(.left-side .request-card:last-child:is(:hover,:focus-visible,.is-open)) .orbit-point--bl,
-  .requests .requests-layout:has(.right-side .request-card:last-child:is(:hover,:focus-visible,.is-open)) .orbit-point--br,
+  .requests .requests-layout:has(.request-item--burnout > .request-card:is(:hover,:focus-visible,.is-open)) .orbit-point--tl,
+  .requests .requests-layout:has(.request-item--meaning > .request-card:is(:hover,:focus-visible,.is-open)) .orbit-point--tr,
+  .requests .requests-layout:has(.request-item--relationships > .request-card:is(:hover,:focus-visible,.is-open)) .orbit-point--bl,
+  .requests .requests-layout:has(.request-item--anxiety > .request-card:is(:hover,:focus-visible,.is-open)) .orbit-point--br,
   .requests .requests-layout:has(.bottom-card:is(:hover,:focus-visible,.is-open)) .orbit-point--bottom {
     background:#D6AE77 !important;
     box-shadow:0 0 0 1px #D6AE77,0 0 0 5px rgba(227,188,137,.18) !important;
@@ -3465,3 +3465,1122 @@ body { background: var(--bg); }
   .hero .hero-visual .stat-online { top: 225px !important; }
   .hero .hero-visual .stat-city { top: 195px !important; }
 }
+
+
+
+
+/* REQUESTS — repaired using the same independent detail below every card.
+   All other sections are left unchanged. */
+.requests .request-details { display:none !important; }
+.requests .request-item { box-sizing:border-box !important; min-width:0 !important; }
+.requests .request-item .request-detail[hidden] {display:none !important;}
+.requests .request-item .request-detail:not([hidden]) {
+  display:block !important;
+  box-sizing:border-box !important;
+  position:relative !important;
+  inset:auto !important;
+  transform:none !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:6px 0 0 !important;
+  padding:16px 18px !important;
+  background:#F3EDE3 !important;
+  color:#405A68 !important;
+  border:1px solid rgba(100,125,141,.14) !important;
+  outline:0 !important;
+  border-radius:17px !important;
+  box-shadow:0 9px 22px rgba(53,58,52,.07) !important;
+  text-align:center !important;
+  font:400 16px/1.55 Onest,sans-serif !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+.requests .request-item .request-detail p { margin:0 !important; color:#405A68 !important; }
+.hero .hero-visual .stat,
+.hero .hero-visual .stat strong,
+.hero .hero-visual .stat span {color:#405A68 !important;}
+@media (min-width:1001px) {
+  .requests .requests-layout {
+    display:block !important;
+    position:relative !important;
+    width:min(100%,1240px) !important;
+    max-width:1240px !important;
+    height:560px !important;
+    min-height:560px !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    overflow:visible !important;
+    isolation:isolate !important;
+  }
+  .requests .requests-side {display:contents !important;}
+  .requests .request-item {
+    position:absolute !important;
+    display:block !important;
+    width:clamp(265px,28.6%,355px) !important;
+    max-width:355px !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 !important;
+    transform:none !important;
+    z-index:6 !important;
+  }
+  .requests .request-item:has(.request-detail:not([hidden])) {z-index:20 !important;}
+  .requests .request-item--burnout {left:0 !important;right:auto !important;top:23px !important;bottom:auto !important;}
+  .requests .request-item--relationships {left:0 !important;right:auto !important;top:255px !important;bottom:auto !important;}
+  .requests .request-item--meaning {right:0 !important;left:auto !important;top:23px !important;bottom:auto !important;}
+  .requests .request-item--anxiety {right:0 !important;left:auto !important;top:255px !important;bottom:auto !important;}
+  .requests .request-item--crisis {left:50% !important;right:auto !important;top:440px !important;bottom:auto !important;transform:translateX(-50%) !important;width:390px !important;max-width:390px !important;}
+  .requests .request-item .request-card,
+  .requests .request-item .request-card.bottom-card {
+    position:relative !important;
+    inset:auto !important;
+    display:grid !important;
+    place-items:center !important;
+    width:100% !important;
+    max-width:none !important;
+    height:78px !important;
+    min-height:78px !important;
+    margin:0 !important;
+    padding:14px 18px !important;
+    transform:none !important;
+    border-radius:18px !important;
+    font-size:17px !important;
+    line-height:1.4 !important;
+    z-index:1 !important;
+  }
+  .requests .request-item .request-detail:not([hidden]) {z-index:2 !important;}
+  .requests .requests-center {
+    position:absolute !important;
+    display:block !important;
+    left:50% !important;
+    top:77px !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:translateX(-50%) !important;
+    width:300px !important;
+    height:300px !important;
+    border-radius:50% !important;
+    overflow:hidden !important;
+    z-index:4 !important;
+  }
+  .requests .requests-orbit {
+    position:absolute !important;
+    display:block !important;
+    left:50% !important;
+    top:54px !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:translateX(-50%) !important;
+    width:346px !important;
+    height:346px !important;
+    z-index:2 !important;
+    pointer-events:none !important;
+  }
+  .requests .request-line {display:none !important;}
+}
+@media (min-width:1001px) and (max-width:1250px) {
+  .requests .requests-center {width:272px !important;height:272px !important;top:77px !important;}
+  .requests .requests-orbit {width:320px !important;height:320px !important;top:53px !important;}
+  .requests .request-item {width:clamp(245px,28%,330px) !important;}
+}
+@media (max-width:1000px) {
+  .requests .requests-layout {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:16px !important;
+    height:auto !important;
+    min-height:0 !important;
+    overflow:visible !important;
+  }
+  .requests .requests-side {display:contents !important;}
+  .requests .requests-center {position:relative !important;order:-1 !important;inset:auto !important;transform:none !important;}
+  .requests .requests-orbit {display:none !important;}
+  .requests .request-item {
+    position:relative !important;
+    inset:auto !important;
+    transform:none !important;
+    width:min(100%,560px) !important;
+    max-width:560px !important;
+    margin:0 !important;
+  }
+  .requests .request-item .request-card,
+  .requests .request-item .request-card.bottom-card {
+    position:relative !important;
+    inset:auto !important;
+    transform:none !important;
+    width:100% !important;
+    max-width:none !important;
+    min-height:78px !important;
+    height:auto !important;
+    margin:0 !important;
+  }
+  .requests .request-item .request-detail:not([hidden]) {position:relative !important;}
+}
+
+/* Only four side details: move below their card. The fifth (bottom) is unchanged. */
+@media (min-width: 1001px) {
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    margin-top: 86px !important;
+  }
+}
+
+
+/* Final spacing refinement: move the requests composition toward its heading. */
+.requests .section-title { margin-bottom: 6px !important; }
+@media (max-width: 1000px) {
+  .requests .requests-layout { gap: 24px !important; }
+  .requests .request-item {
+    display: flow-root !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+  }
+  .requests .request-item .request-detail:not([hidden]) {
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Unified section top whitespace: 1/3 of previous values; hero unchanged. */
+.requests, .methods, .education, .publications { padding-top: 16px !important; }
+.consultation { padding-top: 21px !important; }
+
+/* Smaller section headings, without changing the layout or card sizes. */
+@media (min-width: 1001px) {
+  .requests .section-title { font-size: clamp(36px, 3.45vw, 52px) !important; line-height: 1.18 !important; }
+  .methods-title { font-size: clamp(34px, 3vw, 53px) !important; }
+  .education-intro h2, .publications-heading h2 { font-size: clamp(34px, 3.1vw, 54px) !important; }
+}
+
+
+/* 23 Nov: consistent H2 typography and a slightly tighter heading-to-orbit gap.
+   The hero H1, card geometry, hover behavior and responsive layout are unchanged. */
+@media (min-width: 1001px) {
+  .requests .section-title,
+  .methods-title,
+  .education-intro h2,
+  .publications-heading h2,
+  .consultation-intro h2 {
+    font-size: clamp(36px, 3vw, 48px) !important;
+    line-height: 1.22 !important;
+  }
+  /* Lift the entire five-card composition together by 26px. */
+  .requests .requests-layout {
+    transform: translateY(-26px) !important;
+  }
+}
+
+/* Client-requested refinements, 23 Nov 2026: scoped to modified elements. */
+.brand { gap: 9px; }
+.brand img { width: 42px; height: 69px; }
+.brand strong { font-weight: 600; font-size: 27px; line-height: 1.1; letter-spacing: -.025em; }
+.brand small { font-weight: 300; font-size: 12px; line-height: 1.35; margin-top: 3px; }
+.header-inner { gap: 16px; }
+.header-button { margin-left: clamp(8px,1vw,20px); }
+.hero-actions .scroll-link { color: #486b80; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(72,107,128,.35); text-underline-offset: 5px; }
+.requests .request-item .request-detail:not([hidden]) { text-align: left !important; font-size: 14px !important; line-height: 1.4 !important; padding: 13px 16px !important; }
+.requests .request-detail p { margin: 0 0 7px; font-weight: 500; }
+.requests .request-detail ul { margin: 0; padding-left: 18px; }
+.requests .request-detail li { margin: 2px 0; }
+.requests-manifesto { max-width: 760px; margin: 24px auto 32px; text-align: center; color: #405A68; }
+.requests-manifesto h3 { font-size: clamp(23px,2.2vw,34px); margin-bottom: 16px; }
+.requests-manifesto p { font-size: 16px; line-height: 1.65; }
+.requests-manifesto .manifesto-quote { font-size: 18px; }
+.methods-visual .tools-box { margin-top: 24px; }
+.consultation-age { margin-right: 24px; }
+@media (min-width: 1001px) {
+  /* Keep the original five-card arrangement; make space for expanded text below it. */
+  .requests .requests-layout { margin-bottom: 145px !important; }
+  .requests .request-item--crisis .request-detail:not([hidden]) { margin-top: 8px !important; }
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) { margin-top: 8px !important; }
+}
+@media (max-width: 1250px) {
+ .brand img { width: 35px; height: 58px; }
+ .brand strong { font-size: 22px; }
+ .header-inner { gap: 12px; }
+ .navigation { gap: 10px; }
+ .header-button { padding-inline: 20px; }
+}
+@media (max-width: 800px) {
+ .brand img { width: 32px; height: 52px; }
+ .brand strong { font-size: 21px; }
+ .brand small { font-size: 11px; }
+ .requests .requests-layout { margin-bottom: 0 !important; }
+ .requests-manifesto { margin-top: 30px; }
+}
+
+/* Header balance correction: only the logo and navigation, no page-wide changes. */
+@media (min-width: 1151px) {
+  .header .header-inner { gap: clamp(18px, 1.6vw, 30px); }
+  .header .brand { gap: 10px; }
+  .header .brand img { width: 35px; height: 57px; }
+  .header .brand strong { font-size: 23px; font-weight: 600; line-height: 1.12; }
+  .header .brand small { font-size: 12px; font-weight: 300; }
+  .header .navigation { position: static; left: auto; margin-left: auto; gap: clamp(13px, 1.5vw, 28px); flex-shrink: 1; min-width: 0; font-size: clamp(14px, .9vw, 17px); }
+  .header .navigation a { flex-shrink: 0; }
+  .header .header-button { flex-shrink: 0; margin-left: 8px; padding: 12px 27px; }
+}
+@media (min-width: 801px) and (max-width: 1150px) {
+  .header .header-inner { position: relative; flex-wrap: nowrap; min-height: 76px; gap: 12px; }
+  .header .brand { min-width: 0; gap: 9px; }
+  .header .brand img { width: 32px; height: 52px; }
+  .header .brand strong { font-size: 21px; font-weight: 600; }
+  .header .brand small { font-size: 11px; font-weight: 300; }
+  .header .header-button { order: 2; margin-left: auto; padding: 11px 20px; font-size: 14px; flex-shrink: 0; }
+  .header .mobile-menu-toggle { order: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex: 0 0 42px; height: 42px; border: 1px solid rgba(100,125,141,.28); border-radius: 50%; background: #fff; color: var(--blue); z-index: 102; }
+  .header .mobile-menu-toggle span { width: 17px; height: 1.5px; background: currentColor; }
+  .header .mobile-menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6.5px) rotate(45deg); }
+  .header .mobile-menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .header .mobile-menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-6.5px) rotate(-45deg); }
+  .header .navigation { display: none; position: absolute; top: calc(100% + 8px); left: auto; right: 0; width: min(340px, 100%); margin: 0; padding: 14px; background: #F7F6F2; border: 1px solid rgba(100,125,141,.22); border-radius: 20px; box-shadow: 0 16px 35px rgba(53,58,52,.12); flex-direction: column; align-items: stretch; gap: 0; z-index: 101; }
+  .header .navigation.is-open { display: flex; }
+  .header .navigation a { display: block; padding: 12px 14px; font-size: 15px; }
+}
+
+/* 23 Nov — targeted visual repair: keep the existing composition and copy. */
+@media (min-width: 1001px) {
+  /* Reserve the space for the longer hover descriptions without an extra 145px gap. */
+  .requests .requests-layout {
+    height: 700px !important;
+    min-height: 700px !important;
+    margin-bottom: 0 !important;
+  }
+  .requests .requests-manifesto { margin-top: 4px !important; margin-bottom: 34px !important; }
+  /* Keep the five cards in their existing positions; descriptions sit directly below. */
+  .requests .request-item .request-detail:not([hidden]) {
+    margin-top: 12px !important;
+    border: 1px solid rgba(100,125,141,.14) !important;
+    box-shadow: 0 8px 20px rgba(53,58,52,.06) !important;
+  }
+}
+/* The image in “Как я работаю” should balance the text column rather than dominate it. */
+.methods .methods-image {
+  height: clamp(250px, 25vw, 355px) !important;
+  width: 100%;
+  border-radius: 65px 105px 36px 36px;
+}
+.methods .methods-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 54%; }
+@media (max-width: 1000px) {
+  .requests .requests-manifesto { margin-top: 22px !important; }
+  .methods .methods-image { height: clamp(240px, 42vw, 330px) !important; }
+}
+
+/* First screen only — requested text metrics and a restrained secondary link. */
+@media (min-width: 1101px) {
+  .hero .hero-description {
+    width: 723px;
+    max-width: 100%;
+    height: auto;
+    font-family: 'Onest', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 1.45;
+    letter-spacing: .005em;
+    color: #353A34;
+  }
+}
+@media (max-width: 1450px) {
+  .hero .hero-line-break { display: none; }
+}
+.hero .hero-actions > .scroll-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #647D8D;
+  font-weight: 400;
+  font-size: 15px;
+  text-decoration: none;
+  border: 0;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.hero .hero-actions > .scroll-link:hover { color: #353A34; }
+.hero .hero-actions > .scroll-link span {
+  display: inline-grid;
+  place-items: center;
+  margin-left: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(100,125,141,.4);
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* Header CTA: understated outline; hero CTA remains unchanged. */
+.header .header-button {
+  background: transparent !important;
+  color: #647D8D !important;
+  border: 1px solid #647D8D !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+  padding: 10px 21px !important;
+  transition: background-color .2s ease, color .2s ease !important;
+}
+.header .header-button:hover,
+.header .header-button:focus-visible {
+  background: #E8EEF0 !important;
+  color: #506E7D !important;
+  transform: none !important;
+}
+
+/* Final targeted refinement: header wordmark only. */
+.header .brand strong {
+  font-size: 24px;
+  font-weight: 400;
+  color: #353A34;
+  letter-spacing: -.025em;
+}
+.header .brand small {
+  font-size: 12px;
+  font-weight: 300;
+  color: #647D8D;
+}
+@media (max-width: 1100px) {
+  .header .brand strong { font-size: 21px; }
+}
+@media (max-width: 560px) {
+  .header .brand strong { font-size: 18px; }
+  .header .brand small { font-size: 11px; }
+}
+
+/* Header refinement: harmonized subtitle and filled CTA on hover only. */
+.header .brand small {
+  font-size: 14px;
+  font-weight: 400;
+  color: #353A34;
+  letter-spacing: .005em;
+}
+.header .header-button:hover,
+.header .header-button:focus-visible {
+  background: #647D8D !important;
+  color: #FFFFFF !important;
+  border-color: #647D8D !important;
+  transform: none !important;
+}
+@media (max-width: 560px) {
+  .header .brand small { font-size: 12px; }
+}
+
+
+/* Header wordmark: precise alignment and restrained two-tone hierarchy. */
+.header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+.header .brand img {
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+.header .brand strong,
+.header .brand small {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.header .brand strong {
+  color: #405A68;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+.header .brand small {
+  color: #353A34;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  margin-top: 2px;
+}
+@media (max-width: 1100px) {
+  .header .brand strong { font-size: 21px; }
+}
+@media (max-width: 560px) {
+  .header .brand strong { font-size: 18px; }
+  .header .brand small { font-size: 12px; }
+}
+
+/* First-screen scroll cue: slightly smaller circular arrow only. */
+.hero .hero-actions > .scroll-link span {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  font-size: 15px;
+}
+
+
+/* 23 Nov — four side cards: descriptions live in a dedicated clear area
+   below the five-card orbit. The middle/bottom card is unchanged. */
+@media (min-width: 1001px) {
+  .requests .requests-layout {
+    height: 790px !important;
+    min-height: 790px !important;
+  }
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    border: 1px solid rgba(100,125,141,.14) !important;
+    outline: none !important;
+    box-shadow: 0 8px 20px rgba(53,58,52,.06) !important;
+  }
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]) {
+    top: 517px !important; /* 23 + 517 = 540px from layout top */
+  }
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    top: 285px !important; /* 255 + 285 = 540px from layout top */
+  }
+}
+
+/* 23 Nov: blue-beige palette for expanded request descriptions only. */
+.requests .request-item .request-detail:not([hidden]) {
+  background: #E9E9E3 !important;
+  background-color: #E9E9E3 !important;
+  border: 1px solid #CFD7D6 !important;
+  outline: none !important;
+  color: #405A68 !important;
+}
+.requests .request-item .request-detail:not([hidden])::before,
+.requests .request-item .request-detail:not([hidden])::after {
+  border-color: #CFD7D6 !important;
+}
+
+
+/* Warm cream expanded descriptions, without a border. */
+.requests .request-item .request-detail:not([hidden]) {
+  background: #FFF5EC !important;
+  background-color: #FFF5EC !important;
+  color: #353A34 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: 0 8px 20px rgba(65, 49, 40, .055) !important;
+}
+.requests .request-item .request-detail:not([hidden])::before,
+.requests .request-item .request-detail:not([hidden])::after {
+  border: 0 !important;
+  outline: 0 !important;
+}
+.requests .request-item .request-detail p,
+.requests .request-item .request-detail li {
+  color: #353A34 !important;
+}
+.requests .request-item .request-detail li::marker {
+  color: #76665C !important;
+}
+
+/* FIX: each side description opens directly beneath its own card.
+   If the upper card expands, move the lower card down on that side. */
+@media (min-width: 1001px) {
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    position: absolute !important;
+    top: calc(78px + 10px) !important;
+    bottom: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+  .requests .requests-layout:has(.request-item--burnout .request-detail:not([hidden]))
+    .request-item--relationships,
+  .requests .requests-layout:has(.request-item--meaning .request-detail:not([hidden]))
+    .request-item--anxiety {
+    top: 390px !important;
+  }
+  .requests .request-item:has(.request-detail:not([hidden])) {
+    z-index: 30 !important;
+  }
+}
+
+/* 23 Nov: refined warm request details. Presentation only; keep layout and behavior. */
+.requests .request-item .request-detail:not([hidden]) {
+  background: #FFF9F3 !important;
+  background-color: #FFF9F3 !important;
+  color: #353A34 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: 0 7px 22px rgba(71, 51, 37, .045) !important;
+  padding: 17px 18px 19px !important;
+  text-align: center !important;
+}
+.requests .request-item .request-detail p {
+  color: #353A34 !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  margin: 0 0 10px !important;
+}
+.requests .request-item .request-detail ul {
+  display: inline-block !important;
+  width: fit-content !important;
+  max-width: calc(100% - 10px) !important;
+  margin: 0 auto !important;
+  padding-left: 19px !important;
+  text-align: left !important;
+  list-style-position: outside !important;
+}
+.requests .request-item .request-detail li {
+  color: #353A34 !important;
+  margin: 3px 0 !important;
+  overflow-wrap: break-word !important;
+}
+.requests .request-item .request-detail li::marker {
+  color: #947765 !important;
+}
+.requests .request-card.is-open {
+  color: #9B5C35 !important;
+}
+
+/* Fine adjustment: lower only the four side descriptions by 16px.
+   The fifth, bottom-center description remains unchanged. */
+@media (min-width: 1001px) {
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    top: 104px !important; /* 78px card + 26px gap */
+  }
+}
+
+/* Requested correction: move the four side descriptions down by one full card height (78px).
+   Do not move the fifth bottom-center description. */
+@media (min-width: 1001px) {
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    top: 182px !important; /* previous 104px + one 78px card */
+  }
+}
+
+/* Fine-tune spacing: bring only the four side descriptions 18px closer. */
+@media (min-width: 1001px) {
+  .requests .request-item--burnout .request-detail:not([hidden]),
+  .requests .request-item--relationships .request-detail:not([hidden]),
+  .requests .request-item--meaning .request-detail:not([hidden]),
+  .requests .request-item--anxiety .request-detail:not([hidden]) {
+    top: 164px !important;
+  }
+}
+
+/* 23 Nov: left-align content in all five expanded request cards only.
+   Preserve card placement, dimensions, colors and interactions. */
+.requests .request-item .request-detail:not([hidden]) {
+  text-align: left !important;
+}
+.requests .request-item .request-detail p {
+  text-align: left !important;
+}
+.requests .request-item .request-detail ul {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding-left: 20px !important;
+  text-align: left !important;
+}
+.requests .request-item .request-detail li {
+  text-align: left !important;
+}
+
+
+/* Editorial manifesto: only the text block beneath the five request cards. */
+.requests .requests-manifesto {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 1280px);
+  max-width: 1280px;
+  margin: 28px auto 54px !important;
+  padding: clamp(40px, 5vw, 76px) clamp(22px, 5vw, 80px) clamp(48px, 5vw, 72px);
+  text-align: left !important;
+  color: #353A34;
+  overflow: hidden;
+}
+.requests .requests-manifesto::before,
+.requests .requests-manifesto::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+}
+.requests .requests-manifesto::before {
+  width: 330px; height: 440px;
+  right: -16px; top: -24px;
+  background: rgba(241, 210, 187, .23);
+  transform: rotate(-18deg);
+}
+.requests .requests-manifesto::after {
+  width: 255px; height: 300px;
+  right: 118px; bottom: -165px;
+  background: rgba(247, 226, 208, .32);
+  transform: rotate(23deg);
+}
+.requests .manifesto-content { position: relative; z-index: 2; max-width: 950px; }
+.requests .requests-manifesto h3 {
+  font-family: Manrope, sans-serif;
+  font-size: clamp(32px, 3.1vw, 49px);
+  line-height: 1.22;
+  font-weight: 400;
+  letter-spacing: -.045em;
+  color: #353A34;
+  margin: 0 0 clamp(26px, 3.5vw, 48px);
+}
+.requests .requests-manifesto h3 em { color: #647D8D; font-style: normal; }
+.requests .requests-manifesto .manifesto-quote {
+  border-left: 2px solid #C99B68;
+  padding: 5px 0 5px clamp(18px, 2.2vw, 32px);
+  margin: 0 0 clamp(24px, 3vw, 42px);
+  max-width: 940px;
+  font-family: Onest, sans-serif;
+  font-size: clamp(20px, 1.65vw, 27px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #405A68;
+}
+.requests .requests-manifesto .manifesto-body {
+  font-family: Onest, sans-serif;
+  font-size: clamp(16px, 1.15vw, 19px);
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0;
+  color: #353A34;
+}
+.requests .manifesto-botanical {
+  position: absolute;
+  width: 200px;
+  height: 340px;
+  right: 0;
+  top: 22px;
+  opacity: .72;
+  z-index: 1;
+  pointer-events: none;
+}
+@media (max-width: 1000px) {
+  .requests .requests-manifesto { margin: 28px auto 42px !important; padding: 36px 24px 48px; }
+  .requests .manifesto-content { max-width: 100%; }
+  .requests .manifesto-botanical { width: 135px; right: -22px; opacity: .25; }
+  .requests .requests-manifesto::before { right: -130px; opacity: .6; }
+}
+@media (max-width: 600px) {
+  .requests .requests-manifesto { padding: 32px 4px 42px; margin: 24px auto 28px !important; }
+  .requests .requests-manifesto h3 { font-size: clamp(28px, 7.6vw, 36px); }
+  .requests .requests-manifesto .manifesto-quote { font-size: 19px; }
+  .requests .requests-manifesto .manifesto-body { font-size: 16px; line-height: 1.7; }
+  .requests .manifesto-botanical { display: none; }
+  .requests .requests-manifesto::before, .requests .requests-manifesto::after { display: none; }
+}
+
+/* 23 Nov — manifesto composition only. Keep the five cards and their expanded panels intact. */
+@media (min-width: 1001px) {
+  .requests .requests-layout {
+    height: 620px !important;
+    min-height: 620px !important;
+    margin-bottom: 0 !important;
+  }
+  .requests .requests-layout:has(.request-detail:not([hidden])) {
+    height: 790px !important;
+    min-height: 790px !important;
+  }
+}
+.requests .requests-manifesto {
+  box-sizing: border-box;
+  width: min(100%, 1080px) !important;
+  max-width: 1080px !important;
+  margin: 8px auto 42px !important;
+  padding: 34px 46px 48px !important;
+  overflow: hidden;
+}
+.requests .manifesto-content { max-width: 830px !important; }
+.requests .requests-manifesto h3 {
+  font-size: clamp(32px, 2.8vw, 45px) !important;
+  line-height: 1.26 !important;
+  margin-bottom: 27px !important;
+}
+.requests .requests-manifesto .manifesto-quote {
+  font-size: clamp(19px, 1.45vw, 24px) !important;
+  line-height: 1.5 !important;
+  max-width: 790px !important;
+  margin-bottom: 24px !important;
+}
+.requests .requests-manifesto .manifesto-body {
+  max-width: 790px !important;
+  font-size: clamp(16px, 1.05vw, 18px) !important;
+  line-height: 1.75 !important;
+}
+.requests .manifesto-botanical {
+  width: 120px !important;
+  height: 210px !important;
+  right: 10px !important;
+  top: 85px !important;
+  opacity: .38 !important;
+}
+.requests .requests-manifesto::before {
+  width: 200px !important;
+  height: 270px !important;
+  right: -45px !important;
+  top: 45px !important;
+  opacity: .55 !important;
+}
+.requests .requests-manifesto::after { opacity: .4 !important; }
+@media (max-width: 1000px) {
+  .requests .requests-manifesto { width: 100% !important; padding: 30px 24px 38px !important; margin: 12px auto 32px !important; }
+  .requests .manifesto-content { max-width: 100% !important; }
+  .requests .manifesto-botanical { opacity: .17 !important; }
+}
+@media (max-width: 600px) {
+  .requests .requests-manifesto { padding: 25px 4px 30px !important; }
+  .requests .requests-manifesto h3 { font-size: clamp(28px, 7vw, 36px) !important; margin-bottom: 22px !important; }
+  .requests .requests-manifesto .manifesto-quote { font-size: 19px !important; }
+  .requests .requests-manifesto .manifesto-body { font-size: 16px !important; }
+  .requests .manifesto-botanical { display: none !important; }
+}
+
+/* Final spacing refinement: compact manifesto and clean editorial composition.
+   Five card positions and their interaction styles are unchanged. */
+@media (min-width: 1001px) {
+  .requests .requests-layout {
+    height: 550px !important;
+    min-height: 550px !important;
+  }
+  .requests .requests-layout:has(.request-detail:not([hidden])) {
+    height: 690px !important;
+    min-height: 690px !important;
+  }
+}
+.requests .requests-manifesto {
+  margin: 0 auto 16px !important;
+  padding: 12px 36px 24px !important;
+  overflow: visible !important;
+}
+.requests .requests-manifesto::before,
+.requests .requests-manifesto::after,
+.requests .manifesto-botanical {
+  display: none !important;
+  content: none !important;
+}
+.requests .requests-manifesto h3 { margin-bottom: 22px !important; }
+.requests .requests-manifesto .manifesto-quote { margin-bottom: 18px !important; }
+@media (max-width: 1000px) {
+  .requests .requests-manifesto { padding: 20px 20px 28px !important; margin: 0 auto 20px !important; }
+}
+@media (max-width: 600px) {
+  .requests .requests-manifesto { padding: 16px 4px 22px !important; }
+}
+
+/* 23 Nov: unified left-aligned manifesto, without a floating centered column.
+   This changes only the manifesto; the five request cards remain untouched. */
+.requests .requests-manifesto {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 28px !important;
+  padding: 26px 0 30px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+.requests .manifesto-content {
+  width: min(100%, 990px) !important;
+  max-width: 990px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+.requests .requests-manifesto h3 {
+  font-size: clamp(34px, 3.05vw, 46px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.035em !important;
+  margin: 0 0 28px !important;
+  text-align: left !important;
+}
+.requests .requests-manifesto .manifesto-quote {
+  max-width: 920px !important;
+  margin: 0 0 24px !important;
+  padding: 5px 0 5px 26px !important;
+  border-left: 2px solid #D6AD7C !important;
+  font-size: clamp(21px, 1.7vw, 27px) !important;
+  line-height: 1.52 !important;
+  text-align: left !important;
+}
+.requests .requests-manifesto .manifesto-body {
+  max-width: 900px !important;
+  margin: 0 !important;
+  font-size: clamp(17px, 1.1vw, 19px) !important;
+  line-height: 1.72 !important;
+  text-align: left !important;
+}
+@media (min-width: 1001px) {
+  .requests .requests-layout {
+    height: 550px !important;
+    min-height: 550px !important;
+  }
+  .requests .requests-layout:has(.request-detail:not([hidden])) {
+    height: 690px !important;
+    min-height: 690px !important;
+  }
+}
+@media (max-width: 1000px) {
+  .requests .requests-manifesto { padding: 26px 0 32px !important; margin-bottom: 24px !important; }
+  .requests .manifesto-content { width: 100% !important; }
+}
+@media (max-width: 600px) {
+  .requests .requests-manifesto h3 { font-size: clamp(29px, 7vw, 36px) !important; margin-bottom: 22px !important; }
+  .requests .requests-manifesto .manifesto-quote { font-size: 19px !important; padding-left: 17px !important; }
+  .requests .requests-manifesto .manifesto-body { font-size: 16px !important; }
+}
+
+/* Targeted refinement — "Как я работаю" and the 400+ hours education fact.
+   Keep other sections and the five request cards unchanged. */
+@media (min-width: 1001px) {
+  .methods .methods-grid { align-items: start !important; }
+  .methods .methods-visual { display: flex !important; flex-direction: column !important; gap: 0 !important; }
+  .methods .methods-image { height: 215px !important; border-radius: 56px 95px 30px 30px !important; }
+  .methods .methods-visual h3 { font-size: clamp(27px, 2.1vw, 34px) !important; line-height: 1.2 !important; margin: 17px 0 9px !important; }
+  .methods .methods-visual > p { font-size: 15px !important; line-height: 1.55 !important; margin: 0 !important; }
+  .methods .tools-box { margin-top: 17px !important; padding: 16px 20px !important; border-radius: 22px !important; }
+  .methods .tools-title { font-size: 12px !important; margin-bottom: 11px !important; }
+  .methods .tools-list { gap: 7px !important; }
+  .methods .tools-list span { min-height: 44px !important; padding: 7px 8px !important; font-size: 11px !important; line-height: 1.25 !important; }
+}
+.education .education-hours {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 15px !important;
+  padding: 28px 0 !important;
+}
+.education .education-hours-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border: 0 !important;
+  padding: 0 !important;
+}
+.education .education-hours-number { display: flex; align-items: baseline; gap: 12px; }
+.education .education-hours-number strong {
+  font-size: clamp(56px, 5vw, 76px) !important;
+  line-height: 1 !important;
+  letter-spacing: -.055em !important;
+}
+.education .education-hours-number span {
+  color: var(--blue);
+  font-family: Manrope, sans-serif;
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.education .education-hours-heading .education-kicker { display: block; margin: 0 !important; }
+.education .education-hours > p {
+  margin: 0 !important;
+  max-width: 620px;
+  font-size: clamp(17px, 1.15vw, 19px);
+  line-height: 1.6;
+  color: var(--ink);
+}
+@media (max-width: 1000px) {
+  .education .education-hours { gap: 12px !important; }
+  .education .education-hours-number { flex-wrap: wrap; }
+}
+
+/* 23 Nov — three small refinements requested after visual review. */
+@media (min-width: 1001px) {
+  /* Restore a little visual weight to the right methods column. */
+  .methods .methods-image { height: 248px !important; }
+  .methods .methods-visual h3 { margin-top: 19px !important; margin-bottom: 12px !important; }
+  .methods .tools-box { margin-top: 20px !important; padding: 19px 20px !important; }
+  /* Allow the manifesto to occupy the available editorial width. */
+  .requests .manifesto-content { width: 100% !important; max-width: 1180px !important; }
+  .requests .requests-manifesto .manifesto-quote { max-width: 1120px !important; }
+  .requests .requests-manifesto .manifesto-body { max-width: 1120px !important; }
+}
+/* Group the 400+ hours and its explanation into one restrained feature. */
+.education .education-hours {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 30px 36px !important;
+  background: #F0F2F0 !important;
+  border-radius: 26px !important;
+  border: none !important;
+  gap: 16px !important;
+}
+.education .education-hours-heading { gap: 9px !important; }
+.education .education-hours > p {
+  max-width: 100% !important;
+  line-height: 1.65 !important;
+}
+@media (max-width: 600px) {
+  .education .education-hours { padding: 22px 20px !important; border-radius: 20px !important; }
+}
+
+/* New portrait: keep the existing circular composition. */
+.requests .requests-center img[src="img/05.jpg"] { object-fit: cover !important; object-position: 50% 32% !important; border-radius: 50% !important; }
+
+/* Centered manifesto and stable desktop request section. */
+@media (min-width: 1001px) {
+  .requests .requests-layout,
+  .requests .requests-layout:has(.request-detail:not([hidden])) {
+    height: 780px !important;
+    min-height: 780px !important;
+    margin-bottom: 0 !important;
+    transition: none !important;
+    overflow-anchor: none;
+  }
+}
+.requests .requests-manifesto {
+  box-sizing: border-box !important;
+  width: min(100%, 1120px) !important;
+  max-width: 1120px !important;
+  margin: 12px auto 38px !important;
+  padding: clamp(28px, 4vw, 54px) clamp(22px, 5vw, 72px) !important;
+  background: #F8F5EF !important;
+  border: 1px solid #DCC8AE !important;
+  border-radius: 28px !important;
+  text-align: center !important;
+}
+.requests .manifesto-content {
+  width: 100% !important;
+  max-width: 940px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+.requests .requests-manifesto h3 {
+  text-align: center !important;
+  margin: 0 0 24px !important;
+}
+.requests .requests-manifesto .manifesto-quote {
+  position: relative;
+  max-width: 880px !important;
+  margin: 0 auto 22px !important;
+  padding: 24px 0 0 !important;
+  border: none !important;
+  text-align: center !important;
+}
+.requests .requests-manifesto .manifesto-quote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 1px;
+  background: #C9A477;
+}
+.requests .requests-manifesto .manifesto-body {
+  max-width: 860px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+@media (max-width: 600px) {
+  .requests .requests-manifesto { padding: 26px 18px !important; border-radius: 20px !important; }
+}
+
+/* Align the lower edges of the two desktop editorial columns. */
+@media (min-width: 1001px) {
+  .education .education-grid { align-items: stretch !important; }
+  .education .education-intro { display: flex !important; flex-direction: column !important; }
+  .education .education-intro .education-building { margin-top: auto !important; }
+  .methods .methods-grid { align-items: stretch !important; }
+  .methods .methods-content { display: flex !important; flex-direction: column !important; }
+  .methods .methods-content .accordion { margin-bottom: 0 !important; margin-top: auto !important; }
+  .methods .methods-visual .tools-box { margin-bottom: 0 !important; }
+  .methods .methods-visual { justify-content: space-between !important; }
+}
+
+/* Compact centered manifesto; text follows a consistent left axis. */
+@media (min-width: 1001px) {
+  .requests .requests-layout,
+  .requests .requests-layout:has(.request-detail:not([hidden])) {
+    height: 710px !important;
+    min-height: 710px !important;
+  }
+}
+.requests .requests-manifesto {
+  width: min(100%, 920px) !important;
+  max-width: 920px !important;
+  margin: 0 auto 30px !important;
+  padding: 28px 38px !important;
+  background: transparent !important;
+  border: 1px solid #DCC8AE !important;
+  border-radius: 22px !important;
+  text-align: left !important;
+}
+.requests .manifesto-content { width: 100% !important; max-width: none !important; margin: 0 auto !important; text-align: left !important; }
+.requests .requests-manifesto h3 { font-size: clamp(28px, 2.5vw, 38px) !important; margin: 0 0 18px !important; text-align: left !important; }
+.requests .requests-manifesto .manifesto-quote { max-width: none !important; margin: 0 0 16px !important; padding: 2px 0 2px 18px !important; border-left: 1px solid #C9A477 !important; font-size: clamp(19px, 1.45vw, 23px) !important; line-height: 1.5 !important; text-align: left !important; }
+.requests .requests-manifesto .manifesto-quote::before { display: none !important; }
+.requests .requests-manifesto .manifesto-body { max-width: none !important; margin: 0 !important; font-size: clamp(16px, 1.1vw, 18px) !important; line-height: 1.65 !important; text-align: left !important; }
+@media (max-width: 600px) { .requests .requests-manifesto { padding: 22px 18px !important; border-radius: 18px !important; } }
+
+/* Desktop: reserve only the actual height of the bottom card. */
+@media (min-width: 1001px) {
+  .requests .requests-layout,
+  .requests .requests-layout:has(.request-detail:not([hidden])) {
+    height: var(--requests-height, 540px) !important;
+    min-height: 0 !important;
+    transition: height 260ms ease !important;
+    overflow-anchor: none;
+  }
+  .requests .requests-manifesto { overflow-anchor: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .requests .requests-layout { transition: none !important; }
+}
+
+/* Wide manifesto with warm accents; preserve dynamic request layout. */
+.requests .requests-manifesto {
+  width: 100% !important;
+  max-width: 1320px !important;
+  border-color: #D9B88F !important;
+  background: transparent !important;
+}
+.requests .requests-manifesto h3 em { color: #A87949 !important; }
+.requests .requests-manifesto .manifesto-quote {
+  color: #80634D !important;
+  border-left-color: #D9B88F !important;
+  max-width: none !important;
+}
+.requests .requests-manifesto .manifesto-body {
+  color: #353A34 !important;
+  max-width: none !important;
+}
+
+/* Manifesto: restrained editorial typography, sharper frame. */
+.requests .requests-manifesto { border-radius: 6px !important; border-color: #D2B99B !important; }
+.requests .requests-manifesto h3 { font-family: 'Onest', sans-serif !important; font-weight: 400 !important; letter-spacing: -0.035em !important; }
+.requests .requests-manifesto h3 em { color: #806451 !important; font-style: normal !important; }
+.requests .requests-manifesto .manifesto-quote { color: #51463E !important; border-left-color: #D2B99B !important; }
+
+/* Manifesto final accents */
+.requests .requests-manifesto { border-radius: 14px !important; border-color: #B8956B !important; }
+.requests .requests-manifesto h3 { font-weight: 350 !important; }
+.requests .requests-manifesto h3 em { color: #B8956B !important; }
+.requests .requests-manifesto .manifesto-quote { color: #353A34 !important; border-left-color: #B8956B !important; }
